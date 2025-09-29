@@ -17,10 +17,10 @@ def entry_page(request, title):
             "message": "The entry doesn't exist."
         })
 
-    # Converter Markdown em HTML
+    # Convert markdown to HTML
     html_content = markdown2.markdown(content)
 
-    # Renderizar a página com o conteúdo
+    # Render the entry page with HTML content
     return render(request, "encyclopedia/entry.html", {
         "title": title,
         "content": html_content
