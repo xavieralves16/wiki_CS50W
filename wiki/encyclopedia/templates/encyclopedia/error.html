@@ -1,0 +1,10 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Erro
+{% endblock %}
+
+{% block body %}
+    <h2>{{ message }}</h2>
+    <a href="{% url 'index' %}">Voltar à página inicial</a>
+{% endblock %}
