@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Create New Entry</h1>
     <form action = "{% url 'create' %}" method = "post">
-        {% csfr_token %}
+        {% csrf_token %}
         <div>
             <label for = "title">Title</label>
             <input type = "text" id = "title" name = "title">
@@ -21,7 +21,6 @@
                 <p style = "color: red;" >{error}</p>
             {% endif %}
         </div>
-        {% endblock %}
     </form>
     <button type = "submit">Create</button>
 {% endblock %}
