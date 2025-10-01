@@ -40,3 +40,24 @@ def search(request):
         "query": query,
         "results": matching_entries
     })
+
+def create_entry(request):
+    if request.method == "POST":
+        title = request.POST.get("title", "").strip()
+        content = request.POST.get("content", "").strip()
+
+        if not title or not content:
+            return render(request, "encyclopedia/create_entry.html", {
+                "error": "Title and content cannot be empty. ",
+            })
+        
+        if util.get_entry(title) is not None:
+            return render (request, "encyclopedia/create_entry.html", {
+                "error": "An entry with this title already exists."
+            })
+        
+        util.save_entry(title, content)
+        return redirect("entry", title=title)
+    
+    return render(request, "encyclopedia/create_entry.html")
+
