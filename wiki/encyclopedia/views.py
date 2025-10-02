@@ -61,3 +61,31 @@ def create_entry(request):
     
     return render(request, "encyclopedia/create_entry.html")
 
+def edit_entry(request):
+    if request.method == "POST":
+        title = request.POST.get("title", "").strip()
+        content = request.POST.get("content", "").strip()
+
+        if not title or not content:
+            return render(request, "encyclopedia/edit_entry.html", {
+                "error": "Title and content cannot be empty.",
+                "title": title,
+                "content": content
+            })
+        
+        util.save_entry(title, content)
+        return redirect("entry", title=title)
+    
+    title = request.GET.get("title", "").strip()
+    content = util.get_entry(title)
+
+    if content is None:
+        return render(request, "encyclopedia/error.html", {
+            "message": "The entry doesn't exist."
+        })
+    
+    return render(request, "encyclopedia/edit_entry.html", {
+        "title": title,
+        "content": content
+    })
+
