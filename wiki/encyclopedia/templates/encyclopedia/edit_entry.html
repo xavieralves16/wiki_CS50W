@@ -1,4 +1,4 @@
-{ % extends "encyclopedia/layout.html" % }
+{% extends "encyclopedia/layout.html" %}
 {% block title %}
     Edit Entry
 {% endblock %}
@@ -8,7 +8,7 @@
         {% csrf_token %}
         <div>
             <Label for = "title">Title</Label>
-            <input type = "text" id = "title" name = "tiltle" value = "{{ title}}" readonly>
+            <input type = "text" id = "title" name = "tiltle" value = "{{title}}" readonly>
         </div>
         <div>
             <Label for = "content">Content</Label>
