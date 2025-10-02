@@ -10,9 +10,8 @@
         {{ content|safe }}
     </div>
     <div>
-        <a href="{% url 'edit' %}">
+        <a href="{% url 'edit' %}?title={{ title }}">
             <button>Edit Entry</button>
         </a>
-
     </div>
 {% endblock %}
