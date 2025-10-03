@@ -89,3 +89,14 @@ def edit_entry(request):
         "content": content
     })
 
+def random_entry(request):
+    entries = util.list_entries()
+    if not entries:
+        return render(request, "encyclopedia/error.html", {
+            "message": "No entries available."
+        })
+    
+    import random
+    title = random.choice(entries)
+    return redirect("entry", title = title)
+
